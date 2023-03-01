@@ -3,97 +3,101 @@ import { View, TextInput, StyleSheet, Button } from "react-native";
 import * as EmailValidator from "email-validator";
 
 function Register() {
+  // depend the whole form is filled or not
+  const [isValid, setIsValid] = useState(false);
 
-
-  // depend the whole form is filled or not 
-  const [isValid, setIsValid] = useState(false)
-
-
-  const [firstName, setFirstName] = useState("")
-  const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
-  const [password, setPassword] = useState("")
-  const [confirmPassword, setConfirmPassword] = useState("")
-
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const onSubmitPress = () => {
+    alert("hie this an alert from a valid form");
+  };
 
-  }
-
-  // component ma lifecycle k dremyan hona wali tbdilian capture ke jaskti hain 
+  // component ma lifecycle k dremyan hona wali tbdilian capture ke jaskti hain
   // useEffect
   // it has dependceny array (wo apna apko bind kr skti kisi b cheez k sath)
 
   useEffect(() => {
-    checkValidForm()
-  }, [email, firstName, lastName, password, confirmPassword])
+    checkValidForm();
+  }, [email, firstName, lastName, password, confirmPassword]);
 
   const checkValidForm = () => {
-
     if (email === "") {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
     if (firstName === "") {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
     if (lastName === "") {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
     if (password === "") {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
     if (confirmPassword === "") {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
     if (password !== confirmPassword) {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
-    // uses email validator package and tell that email is valid or not 
+    // uses email validator package and tell that email is valid or not
     if (EmailValidator.validate(email) === false) {
-      setIsValid(false)
-      return
+      setIsValid(false);
+      return;
     }
 
-    setIsValid(true)
-
-  }
-
+    setIsValid(true);
+  };
 
   return (
     <View style={styles.container}>
-
       <View style={styles.form}>
-
-        <TextInput style={styles.inputBox} placeholder={'first name'}
+        <TextInput
+          style={styles.inputBox}
+          placeholder={"first name"}
           onChangeText={setFirstName}
         />
-        <TextInput style={styles.inputBox} placeholder={'last name'}
+        <TextInput
+          style={styles.inputBox}
+          placeholder={"last name"}
           onChangeText={setLastName}
         />
-        <TextInput style={styles.inputBox} placeholder={'email'}
+        <TextInput
+          style={styles.inputBox}
+          placeholder={"email"}
           onChangeText={setEmail}
         />
-        <TextInput style={styles.inputBox} placeholder={'password'}
+        <TextInput
+          style={styles.inputBox}
+          placeholder={"password"}
           onChangeText={setPassword}
         />
-        <TextInput style={styles.inputBox} placeholder={'confirm password'}
+        <TextInput
+          style={styles.inputBox}
+          placeholder={"confirm password"}
           onChangeText={setConfirmPassword}
         />
 
-        <Button title={'submit'} onPress={onSubmitPress} disabled={isValid === false} />
-
+        <Button
+          title={"submit"}
+          onPress={onSubmitPress}
+          disabled={isValid === false}
+        />
       </View>
       <View style={styles.bottomBox}></View>
     </View>
