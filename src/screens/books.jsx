@@ -16,6 +16,7 @@ const booksData = [
 function Books({ navigation }) {
   useEffect(() => {
     console.log("constructor");
+    console.log("constructor");
   });
 
   useEffect(() => {
